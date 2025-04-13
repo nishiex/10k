@@ -19,7 +19,7 @@ export default function Home() {
       {/* Right Logo */}
       <div className="md:w-1/2 flex justify-center md:justify-end mt-10  md:mt-0">
         <img 
-          src="..\public\image\MadhavBattery.jpeg" 
+          src="/image/MadhavBattery.jpeg" 
           alt="Company Logo" 
           className="w-64 h-64 md:w-60 md:h-60  rounded-md"
         />

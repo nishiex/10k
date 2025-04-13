@@ -6,7 +6,7 @@ export default function Header() {
       <div className="flex items-center">
        <a href="/admin">
         <img 
-            src="../public/image/Madhavlogo.png" 
+            src="/image/Madhavlogo.png" 
             alt="Company Logo" 
             className="h-10"
             />
