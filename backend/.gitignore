@@ -1,0 +1,15 @@
+# filepath: c:\Users\nishi\OneDrive\Desktop\MadhavBattery\.gitignore
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+dist/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Editor-specific files
+.vscode/
+*.suo
+*.sw?
