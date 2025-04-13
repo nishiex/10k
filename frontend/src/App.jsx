@@ -12,7 +12,7 @@ function App() {
   return (
     <>
        <Router>
-        <Routes>        git branch
+        <Routes>        
         <Route path="/admin" element={<AdminPage />} />
         </Routes>
         </Router>

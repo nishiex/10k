@@ -13,7 +13,7 @@ const AdminPage = () => {
   // Fetch products from the server
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/products");
+      const response = await axios.get("https://madhav-battery.onrender.com/api/products");
       setProducts(response.data);
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -45,7 +45,7 @@ const AdminPage = () => {
     formData.append("image", form.image);
 
     try {
-      await axios.post("http://localhost:5000/api/products", formData, {
+      await axios.post("https://madhav-battery.onrender.com/api/products", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       setForm({ name: "", price: "", description: "", image: null });
@@ -58,7 +58,7 @@ const AdminPage = () => {
   // Handle product deletion
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/products/${id}`);
+      await axios.delete(`https://madhav-battery.onrender.com/api/products/${id}`);
       fetchProducts(); // Refresh the product list
     } catch (error) {
       console.error("Error deleting product:", error);
