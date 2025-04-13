@@ -8,7 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors({ origin: "https://10k-three.vercel.app/" }));
+app.use(cors({ origin: "https://madhavbattery.vercel.app/" }));
 app.use(express.json());
 app.use("/uploads", express.static("uploads")); // Serve uploaded files
 
