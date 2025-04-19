@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { IoLogoWhatsapp } from "react-icons/io5";
+// import SubsidoryPeople from "../components/SubsidoryPeople";
+import MyLandLord from "./MylandLord";
 
 
 const ProductPage = () => {
@@ -9,7 +11,7 @@ const ProductPage = () => {
   // Fetch products from the backend
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("https://madhav-battery.onrender.com/api/products");
+      const response = await axios.get("/api/products");
       setProducts(response.data);
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -45,6 +47,9 @@ const ProductPage = () => {
             
                 Contact Us
             <IoLogoWhatsapp className="items-center " />
+            </button>
+            <button onClick={()=><MyLandLord/>}>
+             get Subsidory 
             </button>
           </div>
         ))}

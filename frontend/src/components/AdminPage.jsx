@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import SubsidoryPeople from "../components/SubsidoryPeople";
 
 const AdminPage = () => {
   const [form, setForm] = useState({
@@ -7,13 +8,15 @@ const AdminPage = () => {
     price: "",
     description: "",
     image: null,
+    subsisdoryAmount: "",
+    afterSubsisdoryCost: "",
   });
   const [products, setProducts] = useState([]);
 
   // Fetch products from the server
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("https://madhav-battery.onrender.com/api/products");
+      const response = await axios.get("/api/products");
       setProducts(response.data);
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -43,9 +46,11 @@ const AdminPage = () => {
     formData.append("price", form.price);
     formData.append("description", form.description);
     formData.append("image", form.image);
+    formData.append("subsisdoryAmount", form.subsisdoryAmount);
+    formData.append("afterSubsisdoryCost", form.afterSubsisdoryCost);
 
     try {
-      await axios.post("https://madhav-battery.onrender.com/api/products", formData, {
+      await axios.post("/api/products", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       setForm({ name: "", price: "", description: "", image: null });
@@ -58,7 +63,7 @@ const AdminPage = () => {
   // Handle product deletion
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://madhav-battery.onrender.com/api/products/${id}`);
+      await axios.delete(`/api/products/${id}`);
       fetchProducts(); // Refresh the product list
     } catch (error) {
       console.error("Error deleting product:", error);
@@ -67,7 +72,8 @@ const AdminPage = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Admin Panel</h1>
+      <SubsidoryPeople/>
+      <h1 className="text-2xl font-bold mb-4">Add Subsidory Product</h1>
 
       {/* Form to upload product */}
       <form onSubmit={handleSubmit} className="mb-6" encType="multipart/form-data">
@@ -112,7 +118,33 @@ const AdminPage = () => {
             className="w-full border rounded p-2"
             required
           />
+
         </div>
+        {/* Subsidory Amount Input */}
+<div className="mb-4">
+  <label className="block text-sm font-medium mb-1">Subsidory Amount</label>
+  <input
+    type="number"
+    name="subsisdoryAmount"
+    value={form.subsisdoryAmount}
+    onChange={handleChange}
+    className="w-full border rounded p-2"
+    required
+  />
+</div>
+
+{/* After Subsidory Cost Input */}
+<div className="mb-4">
+  <label className="block text-sm font-medium mb-1">After Subsidory Cost</label>
+  <input
+    type="number"
+    name="afterSubsisdoryCost"
+    value={form.afterSubsisdoryCost}
+    onChange={handleChange}
+    className="w-full border rounded p-2"
+    required
+  />
+</div>
         <button
           type="submit"
           className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
@@ -138,7 +170,10 @@ const AdminPage = () => {
                 alt={product.name}
                 className="w-full h-40 object-cover mb-2"
               />
+              
             )}
+            <p className="text-sm">Subsidory Amount: {product.subsisdoryAmount}</p>
+            <p className="text-sm">After Subsidory Cost: {product.afterSubsisdoryCost}</p>
             <button
               onClick={() => handleDelete(product._id)}
               className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
