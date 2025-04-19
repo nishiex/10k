@@ -5,7 +5,10 @@ const productSchema = new mongoose.Schema({
   price: { type: Number, required: true },
   description: { type: String, required: true },
   image: { type: Buffer }, // Store the image as binary data
-  imageType: { type: String }, // Store the image MIME type (e.g., 'image/jpeg')
+  imageType: { type: String },
+  subsisdoryAmount: Number,
+  afterSubsisdoryCost: Number,
+   // Store the image MIME type (e.g., 'image/jpeg')
 });
 
 module.exports = mongoose.model("Product", productSchema);
